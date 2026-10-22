@@ -159,3 +159,7 @@ python3 package.py    # writes dist/trn-recipe.skill
 ## Credit
 
 Michael Chu created Tabular Recipe Notation for [Cooking for Engineers](https://www.cookingforengineers.com); the site lists the notation as patent pending. This project is an independent tool for formatting recipes in that style and is not affiliated with Cooking for Engineers.
+
+## License
+
+[MIT](LICENSE). The license covers this code and documentation, not the notation itself.
