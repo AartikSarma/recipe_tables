@@ -1,4 +1,13 @@
-# TRN conventions and a worked example
+# TRN conventions and worked examples
+
+Contents:
+1. How the layout is derived
+2. Worked example: prose to tree (one chain: chana masala)
+3. Worked example: parallel branches (tacos)
+4. Worked example: separate components (sheet cake)
+5. Situations that need a decision
+6. Site typography
+7. Credit
 
 ## How the layout is derived (so you can sanity-check output)
 
@@ -146,6 +155,293 @@ Every step adds something to one pot, so the tree is a single long chain and
 the table runs to eight columns. That's correct: the layout shows that nothing
 here can happen in parallel. If a recipe has two such chains (a curry and a
 separately cooked rice, say), split them with `components`.
+
+## Worked example: parallel branches
+
+Many recipes have the cook doing several things at once. The prose signals
+this with words like *meanwhile*, *while that roasts*, or *start the onions
+first*. Each of those jobs becomes a sibling subtree, and they meet at the
+step that combines them.
+
+Source prose, condensed: pickle sliced red onion in hot vinegar brine for 20
+minutes. Meanwhile, roast spiced sweet potato cubes at 425°F and simmer black
+beans with garlic, then fold the two together. Mash avocados with lime, salt,
+and cilantro. Warm tortillas in a dry skillet. Fill the tortillas and top with
+onions, guacamole, cheese, and cilantro; serve with lime wedges.
+
+Work backward:
+
+- Last step: *fill tortillas; top*. Its inputs are four finished branches
+  (onions, filling, guacamole, tortillas) plus three raw garnishes.
+- The branches have different depths. The onions take two steps, the filling
+  two (with its own two parallel sub-branches), the guacamole and tortillas
+  one each. Shallower branches get colspan to reach the assembly column;
+  the script handles this.
+- Cilantro appears twice (in the guacamole and on top), so it becomes two
+  leaves, each labeled with its use.
+- List branches top to bottom in the order the cook starts them. The onions
+  go first because they must stand 20 minutes; the tortillas go last because
+  they are warmed just before serving. Put that timing in a note too.
+
+```json
+{
+  "title": "Sweet Potato and Black Bean Tacos",
+  "yield": "12 tacos, serves 4",
+  "tree": {
+    "op": "fill tortillas; top",
+    "inputs": [
+      {
+        "op": "pour over; stand 20 min",
+        "inputs": [
+          "1 red onion, thinly sliced",
+          {
+            "op": "heat until dissolved",
+            "inputs": [
+              "1/2 cup (120 mL) cider vinegar",
+              "1/2 cup (120 mL) water",
+              "1 Tbs. (12 g) sugar",
+              "1 tsp. salt"
+            ]
+          }
+        ]
+      },
+      {
+        "op": "fold together",
+        "inputs": [
+          {
+            "op": "toss; roast 425°F (220°C) 25 min, turning once",
+            "inputs": [
+              "2 medium (600 g) sweet potatoes, cut into 1/2-inch cubes",
+              "2 Tbs. (30 mL) olive oil",
+              "1 tsp. chili powder",
+              "1 tsp. ground cumin",
+              "1/2 tsp. salt"
+            ]
+          },
+          {
+            "op": "simmer 5 min; mash lightly",
+            "inputs": [
+              "2 cans (15 oz. / 425 g each) black beans, drained and rinsed",
+              "2 cloves garlic, minced",
+              "1/4 cup (60 mL) water",
+              "1/4 tsp. salt"
+            ]
+          }
+        ]
+      },
+      {
+        "op": "mash",
+        "inputs": [
+          "2 ripe avocados",
+          "2 Tbs. (30 mL) lime juice",
+          "2 Tbs. cilantro, chopped (for guacamole)",
+          "1/2 tsp. salt"
+        ]
+      },
+      {
+        "op": "warm in dry skillet, 30 s per side",
+        "inputs": [
+          "12 small (6-inch) corn tortillas"
+        ]
+      },
+      "1/2 cup (60 g) crumbled feta or cotija",
+      "2 Tbs. cilantro, chopped (for topping)",
+      "1 lime, cut into wedges"
+    ]
+  }
+}
+```
+
+Rendered:
+
+```
++--------------------------------------------------------------+----------------------+---------------------+---------------------+
+| 1 red onion, thinly sliced                                                          |                     |                     |
++--------------------------------------------------------------+----------------------+                     |                     |
+| 1/2 cup (120 mL) cider vinegar                               |                      | pour over; stand 20 |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1/2 cup (120 mL) water                                       | heat until dissolved |         min         |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1 Tbs. (12 g) sugar                                          |                      |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1 tsp. salt                                                  |                      |                     |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 2 medium (600 g) sweet potatoes, cut into 1/2-inch cubes     |                      |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 2 Tbs. (30 mL) olive oil                                     |  toss; roast 425°F   |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1 tsp. chili powder                                          |   (220°C) 25 min,    |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1 tsp. ground cumin                                          |     turning once     |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1/2 tsp. salt                                                |                      |    fold together    |                     |
++--------------------------------------------------------------+----------------------+                     |                     |
+| 2 cans (15 oz. / 425 g each) black beans, drained and rinsed |                      |                     | fill tortillas; top |
++--------------------------------------------------------------+                      |                     |                     |
+| 2 cloves garlic, minced                                      |  simmer 5 min; mash  |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1/4 cup (60 mL) water                                        |       lightly        |                     |                     |
++--------------------------------------------------------------+                      |                     |                     |
+| 1/4 tsp. salt                                                |                      |                     |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 2 ripe avocados                                              |                                            |                     |
++--------------------------------------------------------------+                                            |                     |
+| 2 Tbs. (30 mL) lime juice                                    |                    mash                    |                     |
++--------------------------------------------------------------+                                            |                     |
+| 2 Tbs. cilantro, chopped (for guacamole)                     |                                            |                     |
++--------------------------------------------------------------+                                            |                     |
+| 1/2 tsp. salt                                                |                                            |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 12 small (6-inch) corn tortillas                             |     warm in dry skillet, 30 s per side     |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 1/2 cup (60 g) crumbled feta or cotija                                                                    |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 2 Tbs. cilantro, chopped (for topping)                                                                    |                     |
++--------------------------------------------------------------+----------------------+---------------------+                     |
+| 1 lime, cut into wedges                                                                                   |                     |
++--------------------------------------------------------------+----------------------+---------------------+---------------------+
+```
+
+Two operation cells in the same column that don't share rows (here, the roast
+and the bean simmer) can happen at the same time. That is the main thing the
+table shows that prose hides.
+
+## Worked example: separate components
+
+Use `components` when parts of a dish are made separately and joined only at
+the end, especially when one must wait for another (a cake must cool before
+frosting). Each component gets its own table, and a later table names an
+earlier component as a leaf, marked `(above)`.
+
+```json
+{
+  "title": "Vanilla Sheet Cake with Chocolate Frosting",
+  "yield": "one 9x13-inch cake, about 16 squares",
+  "components": [
+    {
+      "title": "Cake",
+      "tree": {
+        "op": "cool completely in pan, 1 hr",
+        "inputs": [
+          {
+            "op": "spread in greased 9x13-inch pan; bake 350°F (175°C) 30-35 min",
+            "inputs": [
+              {
+                "op": "mix on low, adding dry and milk alternately, dry first and last",
+                "inputs": [
+                  {
+                    "op": "beat 1 min",
+                    "inputs": [
+                      {
+                        "op": "cream on medium-high 3 min",
+                        "inputs": [
+                          "1 cup (226 g) unsalted butter, softened",
+                          "1-1/2 cups (300 g) sugar"
+                        ]
+                      },
+                      "3 large eggs",
+                      "2 tsp. vanilla extract"
+                    ]
+                  },
+                  {
+                    "op": "whisk",
+                    "inputs": [
+                      "2-1/2 cups (315 g) all-purpose flour",
+                      "2-1/2 tsp. baking powder",
+                      "1/2 tsp. salt"
+                    ]
+                  },
+                  "1-1/4 cups (300 mL) milk"
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "title": "Frosting",
+      "tree": {
+        "op": "beat until fluffy, 2 min",
+        "inputs": [
+          {
+            "op": "beat on low until combined",
+            "inputs": [
+              "1/2 cup (113 g) unsalted butter, softened",
+              "2-1/2 cups (300 g) powdered sugar",
+              "1/2 cup (40 g) unsweetened cocoa powder"
+            ]
+          },
+          "3-4 Tbs. (45-60 mL) milk",
+          "1 tsp. vanilla extract",
+          "pinch salt"
+        ]
+      }
+    },
+    {
+      "title": "Assembly",
+      "tree": {
+        "op": "spread over top",
+        "inputs": [
+          "cooled cake (above)",
+          "frosting (above)"
+        ]
+      }
+    }
+  ]
+}
+```
+
+Rendered:
+
+```
+Cake
++-----------------------------------------+------------------------+------------+------------------------+---------------------+--------------------+
+| 1 cup (226 g) unsalted butter, softened | cream on medium-high 3 |            |                        |                     |                    |
++-----------------------------------------+                        |            |                        |                     |                    |
+| 1-1/2 cups (300 g) sugar                |          min           | beat 1 min |                        |                     |                    |
++-----------------------------------------+------------------------+            |                        |                     |                    |
+| 3 large eggs                                                     |            | mix on low, adding dry |  spread in greased  |                    |
++-----------------------------------------+------------------------+            |                        |                     |                    |
+| 2 tsp. vanilla extract                                           |            | and milk alternately,  | 9x13-inch pan; bake | cool completely in |
++-----------------------------------------+------------------------+------------+                        |                     |                    |
+| 2-1/2 cups (315 g) all-purpose flour    |                                     |   dry first and last   | 350°F (175°C) 30-35 |     pan, 1 hr      |
++-----------------------------------------+                                     |                        |                     |                    |
+| 2-1/2 tsp. baking powder                |                whisk                |                        |         min         |                    |
++-----------------------------------------+                                     |                        |                     |                    |
+| 1/2 tsp. salt                           |                                     |                        |                     |                    |
++-----------------------------------------+------------------------+------------+                        |                     |                    |
+| 1-1/4 cups (300 mL) milk                                                      |                        |                     |                    |
++-----------------------------------------+------------------------+------------+------------------------+---------------------+--------------------+
+
+Frosting
++-------------------------------------------+-------------------+----------------------+
+| 1/2 cup (113 g) unsalted butter, softened | beat on low until |                      |
++-------------------------------------------+                   |                      |
+| 2-1/2 cups (300 g) powdered sugar         |      combined     |                      |
++-------------------------------------------+                   |                      |
+| 1/2 cup (40 g) unsweetened cocoa powder   |                   | beat until fluffy, 2 |
++-------------------------------------------+-------------------+                      |
+| 3-4 Tbs. (45-60 mL) milk                                      |         min          |
++-------------------------------------------+-------------------+                      |
+| 1 tsp. vanilla extract                                        |                      |
++-------------------------------------------+-------------------+                      |
+| pinch salt                                                    |                      |
++-------------------------------------------+-------------------+----------------------+
+
+Assembly
++---------------------+-----------------+
+| cooled cake (above) | spread over top |
++---------------------+                 |
+| frosting (above)    |                 |
++---------------------+-----------------+
+```
+
+Butter, milk, and vanilla appear in both the cake and the frosting. Each
+component lists its own amounts; no splitting note is needed because each
+table is read on its own. A component may end in a single-input step that
+takes real time, like *cool completely*. Put the timing between components
+("make the frosting while the cake cools") in a note.
 
 ## Situations that need a decision
 

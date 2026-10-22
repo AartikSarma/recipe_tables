@@ -47,6 +47,9 @@ that part.
    - Every ingredient appears exactly once, as a leaf. If a recipe uses an
      ingredient in two places (butter for the batter and butter for the pan),
      split it into two leaves with the amounts divided.
+   - Work done at the same time ("meanwhile", "while that roasts") becomes
+     sibling subtrees that meet at the step combining them. Don't force
+     parallel work into one chain just to make the table narrower.
    - An operation's inputs are listed top to bottom in the order the cook adds
      them. Ingredients that go in together are adjacent.
    - Ingredients mentioned in a step but not in the ingredient list (salt to
@@ -65,7 +68,7 @@ that part.
 3. **Use `components` for dishes with independent sub-recipes** (crust and
    filling; cake and frosting; sauce and protein) when a single table would be
    more than ~5 columns wide or the sub-recipes are made hours apart. Refer to a
-   finished component as a leaf in a later table: `pie crust (above), chilled`.
+   finished component as a leaf in a later table: `cooled cake (above)`.
    Otherwise prefer one table; the format's whole point is showing how parts
    join.
 
@@ -129,5 +132,8 @@ Convert to metric when the source gives only volume; standard densities are
 fine (flour 125 g/cup, sugar 200 g/cup, butter 227 g/cup, liquids 240 mL/cup).
 When the source already gives weights, keep them.
 
-See `references/conventions.md` for a worked prose-to-tree example, how to
-handle loops and optional steps, and the site's typographic conventions.
+Read `references/conventions.md` before building your first tree. It has three
+worked examples, one for each common shape: a single one-pot chain (chana
+masala), parallel branches meeting at assembly (tacos), and separate components
+joined at the end (sheet cake). It also covers loops, optional steps, and the
+site's typographic conventions.

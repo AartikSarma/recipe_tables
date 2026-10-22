@@ -106,7 +106,7 @@ The skill has three parts:
 | --- | --- |
 | [`trn-recipe/SKILL.md`](trn-recipe/SKILL.md) | Instructions Claude follows: how to turn prose into an operation tree, and the site's style for ingredient cells. |
 | [`trn-recipe/scripts/trn.py`](trn-recipe/scripts/trn.py) | Renderer. Reads the tree as JSON and computes every rowspan and colspan. Standard library only. |
-| [`trn-recipe/references/conventions.md`](trn-recipe/references/conventions.md) | A worked prose-to-tree example and rules for hard cases: reused ingredients, reserved byproducts, parallel steps, repeat-until loops. |
+| [`trn-recipe/references/conventions.md`](trn-recipe/references/conventions.md) | Three worked examples, one per recipe shape (single chain, parallel branches, separate components), and rules for hard cases: reused ingredients, reserved byproducts, repeat-until loops. |
 
 ### Recipe JSON
 
@@ -140,11 +140,174 @@ python3 trn-recipe/scripts/trn.py recipe.json --html out.html    # standalone st
 python3 trn-recipe/scripts/trn.py recipe.json --fragment out.html  # bare table for embedding
 ```
 
-## Example
+## Examples
 
-[`examples/chana-masala.json`](examples/chana-masala.json) holds the recipe shown at the top, with its [HTML](examples/chana-masala.html) and [text](examples/chana-masala.txt) renderings. It is a generic home-style version written for this repo. Its single long chain shows how a one-pot dish lays out: each step adds to the pot, so the table widens to eight columns and the finishing ingredients stretch across to meet the last cell.
+Each example in [`examples/`](examples/) has its input JSON and both renderings, HTML and text. All three are generic recipes written for this repo, and each shows one of the common shapes a recipe takes.
 
-GitHub shows the HTML file as source. To see it rendered, download it and open it in a browser.
+| Recipe | Shape |
+| --- | --- |
+| [Chana Masala](examples/chana-masala.json) | One chain. Every step adds to one pot, so the table widens to eight columns. Shown at the top of this page. |
+| [Sweet Potato and Black Bean Tacos](examples/sweet-potato-black-bean-tacos.json) | Parallel branches. Four jobs run at once and meet at assembly. |
+| [Vanilla Sheet Cake with Chocolate Frosting](examples/vanilla-sheet-cake.json) | Separate components. Cake and frosting are separate tables, joined in a third. |
+
+### Sweet Potato and Black Bean Tacos
+
+The pickled onions, filling, guacamole, and tortillas are independent until the last step. The filling itself has two parallel parts: the roast and the bean simmer.
+
+<table>
+  <tr>
+    <td colspan="2">1 red onion, thinly sliced</td>
+    <td rowspan="5">pour over; stand 20 min</td>
+    <td rowspan="22">fill tortillas; top</td>
+  </tr>
+  <tr>
+    <td>1/2 cup (120 mL) cider vinegar</td>
+    <td rowspan="4">heat until dissolved</td>
+  </tr>
+  <tr>
+    <td>1/2 cup (120 mL) water</td>
+  </tr>
+  <tr>
+    <td>1 Tbs. (12 g) sugar</td>
+  </tr>
+  <tr>
+    <td>1 tsp. salt</td>
+  </tr>
+  <tr>
+    <td>2 medium (600 g) sweet potatoes, cut into 1/2-inch cubes</td>
+    <td rowspan="5">toss; roast 425°F (220°C) 25 min, turning once</td>
+    <td rowspan="9">fold together</td>
+  </tr>
+  <tr>
+    <td>2 Tbs. (30 mL) olive oil</td>
+  </tr>
+  <tr>
+    <td>1 tsp. chili powder</td>
+  </tr>
+  <tr>
+    <td>1 tsp. ground cumin</td>
+  </tr>
+  <tr>
+    <td>1/2 tsp. salt</td>
+  </tr>
+  <tr>
+    <td>2 cans (15 oz. / 425 g each) black beans, drained and rinsed</td>
+    <td rowspan="4">simmer 5 min; mash lightly</td>
+  </tr>
+  <tr>
+    <td>2 cloves garlic, minced</td>
+  </tr>
+  <tr>
+    <td>1/4 cup (60 mL) water</td>
+  </tr>
+  <tr>
+    <td>1/4 tsp. salt</td>
+  </tr>
+  <tr>
+    <td>2 ripe avocados</td>
+    <td rowspan="4" colspan="2">mash</td>
+  </tr>
+  <tr>
+    <td>2 Tbs. (30 mL) lime juice</td>
+  </tr>
+  <tr>
+    <td>2 Tbs. cilantro, chopped (for guacamole)</td>
+  </tr>
+  <tr>
+    <td>1/2 tsp. salt</td>
+  </tr>
+  <tr>
+    <td>12 small (6-inch) corn tortillas</td>
+    <td colspan="2">warm in dry skillet, 30 s per side</td>
+  </tr>
+  <tr>
+    <td colspan="3">1/2 cup (60 g) crumbled feta or cotija</td>
+  </tr>
+  <tr>
+    <td colspan="3">2 Tbs. cilantro, chopped (for topping)</td>
+  </tr>
+  <tr>
+    <td colspan="3">1 lime, cut into wedges</td>
+  </tr>
+</table>
+
+### Vanilla Sheet Cake with Chocolate Frosting
+
+The cake must cool before frosting, so it gets its own table. Make the frosting while it cools.
+
+**Cake**
+
+<table>
+  <tr>
+    <td>1 cup (226 g) unsalted butter, softened</td>
+    <td rowspan="2">cream on medium-high 3 min</td>
+    <td rowspan="4">beat 1 min</td>
+    <td rowspan="8">mix on low, adding dry and milk alternately, dry first and last</td>
+    <td rowspan="8">spread in greased 9x13-inch pan; bake 350°F (175°C) 30-35 min</td>
+    <td rowspan="8">cool completely in pan, 1 hr</td>
+  </tr>
+  <tr>
+    <td>1-1/2 cups (300 g) sugar</td>
+  </tr>
+  <tr>
+    <td colspan="2">3 large eggs</td>
+  </tr>
+  <tr>
+    <td colspan="2">2 tsp. vanilla extract</td>
+  </tr>
+  <tr>
+    <td>2-1/2 cups (315 g) all-purpose flour</td>
+    <td rowspan="3" colspan="2">whisk</td>
+  </tr>
+  <tr>
+    <td>2-1/2 tsp. baking powder</td>
+  </tr>
+  <tr>
+    <td>1/2 tsp. salt</td>
+  </tr>
+  <tr>
+    <td colspan="3">1-1/4 cups (300 mL) milk</td>
+  </tr>
+</table>
+
+**Frosting**
+
+<table>
+  <tr>
+    <td>1/2 cup (113 g) unsalted butter, softened</td>
+    <td rowspan="3">beat on low until combined</td>
+    <td rowspan="6">beat until fluffy, 2 min</td>
+  </tr>
+  <tr>
+    <td>2-1/2 cups (300 g) powdered sugar</td>
+  </tr>
+  <tr>
+    <td>1/2 cup (40 g) unsweetened cocoa powder</td>
+  </tr>
+  <tr>
+    <td colspan="2">3-4 Tbs. (45-60 mL) milk</td>
+  </tr>
+  <tr>
+    <td colspan="2">1 tsp. vanilla extract</td>
+  </tr>
+  <tr>
+    <td colspan="2">pinch salt</td>
+  </tr>
+</table>
+
+**Assembly**
+
+<table>
+  <tr>
+    <td>cooled cake (above)</td>
+    <td rowspan="2">spread over top</td>
+  </tr>
+  <tr>
+    <td>frosting (above)</td>
+  </tr>
+</table>
+
+GitHub shows the HTML files in `examples/` as source. To see them styled, download one and open it in a browser.
 
 ## Development
 

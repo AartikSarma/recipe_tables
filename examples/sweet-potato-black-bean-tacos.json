@@ -1,0 +1,43 @@
+{
+  "title": "Sweet Potato and Black Bean Tacos",
+  "yield": "12 tacos, serves 4",
+  "notes": [
+    "Start the onions first; they need 20 minutes to pickle. Roast the sweet potatoes while you simmer the beans and make the guacamole. Warm the tortillas last.",
+    "Leftover pickled onions keep 2 weeks refrigerated.",
+    "For a vegan version, skip the cheese."
+  ],
+  "tree": {
+    "op": "fill tortillas; top",
+    "inputs": [
+      {"op": "pour over; stand 20 min", "inputs": [
+        "1 red onion, thinly sliced",
+        {"op": "heat until dissolved", "inputs": [
+          "1/2 cup (120 mL) cider vinegar",
+          "1/2 cup (120 mL) water",
+          "1 Tbs. (12 g) sugar",
+          "1 tsp. salt"]}]},
+      {"op": "fold together", "inputs": [
+        {"op": "toss; roast 425°F (220°C) 25 min, turning once", "inputs": [
+          "2 medium (600 g) sweet potatoes, cut into 1/2-inch cubes",
+          "2 Tbs. (30 mL) olive oil",
+          "1 tsp. chili powder",
+          "1 tsp. ground cumin",
+          "1/2 tsp. salt"]},
+        {"op": "simmer 5 min; mash lightly", "inputs": [
+          "2 cans (15 oz. / 425 g each) black beans, drained and rinsed",
+          "2 cloves garlic, minced",
+          "1/4 cup (60 mL) water",
+          "1/4 tsp. salt"]}]},
+      {"op": "mash", "inputs": [
+        "2 ripe avocados",
+        "2 Tbs. (30 mL) lime juice",
+        "2 Tbs. cilantro, chopped (for guacamole)",
+        "1/2 tsp. salt"]},
+      {"op": "warm in dry skillet, 30 s per side", "inputs": [
+        "12 small (6-inch) corn tortillas"]},
+      "1/2 cup (60 g) crumbled feta or cotija",
+      "2 Tbs. cilantro, chopped (for topping)",
+      "1 lime, cut into wedges"
+    ]
+  }
+}

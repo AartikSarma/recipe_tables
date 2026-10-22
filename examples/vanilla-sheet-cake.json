@@ -1,0 +1,37 @@
+{
+  "title": "Vanilla Sheet Cake with Chocolate Frosting",
+  "yield": "one 9x13-inch cake, about 16 squares",
+  "notes": [
+    "Make the frosting while the cake cools. Frosting a warm cake melts it.",
+    "Have the butter, eggs, and milk at room temperature so the batter stays smooth.",
+    "The cake is done when a toothpick in the center comes out clean.",
+    "Covered, the frosted cake keeps 3 days at room temperature."
+  ],
+  "components": [
+    {"title": "Cake", "tree": {"op": "cool completely in pan, 1 hr", "inputs": [
+      {"op": "spread in greased 9x13-inch pan; bake 350°F (175°C) 30-35 min", "inputs": [
+        {"op": "mix on low, adding dry and milk alternately, dry first and last", "inputs": [
+          {"op": "beat 1 min", "inputs": [
+            {"op": "cream on medium-high 3 min", "inputs": [
+              "1 cup (226 g) unsalted butter, softened",
+              "1-1/2 cups (300 g) sugar"]},
+            "3 large eggs",
+            "2 tsp. vanilla extract"]},
+          {"op": "whisk", "inputs": [
+            "2-1/2 cups (315 g) all-purpose flour",
+            "2-1/2 tsp. baking powder",
+            "1/2 tsp. salt"]},
+          "1-1/4 cups (300 mL) milk"]}]}]}},
+    {"title": "Frosting", "tree": {"op": "beat until fluffy, 2 min", "inputs": [
+      {"op": "beat on low until combined", "inputs": [
+        "1/2 cup (113 g) unsalted butter, softened",
+        "2-1/2 cups (300 g) powdered sugar",
+        "1/2 cup (40 g) unsweetened cocoa powder"]},
+      "3-4 Tbs. (45-60 mL) milk",
+      "1 tsp. vanilla extract",
+      "pinch salt"]}},
+    {"title": "Assembly", "tree": {"op": "spread over top", "inputs": [
+      "cooled cake (above)",
+      "frosting (above)"]}}
+  ]
+}
