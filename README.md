@@ -65,7 +65,7 @@ Give Claude a recipe as a URL, pasted text, or a photo of a cookbook page. It re
   </tr>
 </table>
 
-Read it left to right. Ingredients sit in the first column. Each operation spans the rows it consumes and sits to the right of its inputs. The columns converge on one cell: the finished dish. You can see every step, every dependency, and which steps can run in parallel without reading a paragraph.
+Read it left to right. Ingredients sit in the first column. Each operation spans the rows it consumes and sits to the right of its inputs. The columns converge on one cell: the finished dish. You can see every step, every dependency, and which steps can run in parallel.
 
 ## Install
 
