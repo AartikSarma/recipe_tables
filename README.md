@@ -108,8 +108,6 @@ The skill has three parts:
 | [`trn-recipe/scripts/trn.py`](trn-recipe/scripts/trn.py) | Renderer. Reads the tree as JSON and computes every rowspan and colspan. Standard library only. |
 | [`trn-recipe/references/conventions.md`](trn-recipe/references/conventions.md) | A worked prose-to-tree example and rules for hard cases: reused ingredients, reserved byproducts, parallel steps, repeat-until loops. |
 
-Claude does the judgment (what consumes what); the script does the arithmetic. Hand-built spans go wrong easily, and a mis-spanned cell silently misstates the recipe.
-
 ### Recipe JSON
 
 A string is an ingredient. An object with `op` and `inputs` is an operation. Inputs may be ingredients or other operations.
