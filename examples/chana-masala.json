@@ -1,0 +1,38 @@
+{
+  "title": "Chana Masala",
+  "yield": "serves 4",
+  "notes": [
+    "If the spices start to stick or scorch, add a splash of water.",
+    "Mashing a few chickpeas against the side of the pot thickens the sauce.",
+    "Lemon juice can stand in for the amchur; add it at the end, off the heat.",
+    "Serve with basmati rice or flatbread. Keeps 4 days refrigerated and tastes better the next day."
+  ],
+  "tree": {
+    "op": "stir in; top with cilantro",
+    "inputs": [
+      {"op": "simmer 15-20 min; mash a few chickpeas", "inputs": [
+        {"op": "cook until oil separates, 8-10 min", "inputs": [
+          {"op": "stir 1 min", "inputs": [
+            {"op": "sauté 1 min", "inputs": [
+              {"op": "fry until golden, 8-10 min", "inputs": [
+                {"op": "heat until seeds sizzle", "inputs": [
+                  "2 Tbs. (30 mL) neutral oil",
+                  "1 tsp. cumin seeds"]},
+                "1 large onion, finely chopped"]},
+              "4 cloves garlic, minced",
+              "1 Tbs. (6 g) fresh ginger, grated",
+              "1-2 green chilies, slit"]},
+            "1 tsp. ground coriander",
+            "1 tsp. ground cumin",
+            "1/2 tsp. ground turmeric",
+            "1 tsp. Kashmiri chili powder"]},
+          "14 oz. (400 g) can crushed tomatoes",
+          "1 tsp. salt"]},
+        "2 cans (15 oz. / 425 g each) chickpeas, drained and rinsed",
+        "1 cup (240 mL) water"]},
+      "1 tsp. garam masala",
+      "1 tsp. amchur (dried mango powder)",
+      "1/4 cup (5 g) cilantro, chopped"
+    ]
+  }
+}
